@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<td th:text="${article.content}">
+
+</td>
+<a href="/article/list">
+  <button type="button">목록</button>
+</a>
+<a th:href="@{|/article/modify/${article.id}|}">
+<button type="button">수정하기</button>
+</a>
+<a th:href="@{|/article/delete/${article.id}|}">
+    <button type="button">삭제하기</button>
+</a>
+
+</body>
+</html>
