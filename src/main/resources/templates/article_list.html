@@ -13,14 +13,29 @@
     <a href="/article/list">목록</a>
 </nav>
 <body>
+<div class="row my-3">
+</div>
 <div>
     <tr th:each="article : ${articleList}">
         <td>
             <a th:href="@{|/article/detail/${article.id}|}" th:text="${article.title}" ></a>
-
         </td>
     </tr>
 </div>
+
+<div class="row my-3">
+    <div class="col-6">
+        <div class="input-group">
+            <form th:action="@{/article/list}" method="get" id="searchForm">
+                <input type="text" id="kw" name="kw" th:value="${kw}">
+                <button type="submit">찾기</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 <a href="/article/create">

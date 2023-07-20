@@ -2,7 +2,9 @@ package com.example.sihum.Article;
 
 import com.example.sihum.User.SiteUser;
 import com.example.sihum.User.UserRepository;
+import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +18,8 @@ public class ArticleService {
 
     private final UserRepository userRepository;
 
+
+
     public void create(String title, String content, SiteUser user) {
         Article article = new Article();
         article.setTitle(title);
@@ -25,9 +29,8 @@ public class ArticleService {
 
     }
 
-    public List<Article> getList() {
-
-        return this.articleRepository.findAll();
+    public List<Article> getList(String kw) {
+        return this.articleRepository.findAllByKeyword(kw);
     }
 
     public Article getArticle(Integer id) {
