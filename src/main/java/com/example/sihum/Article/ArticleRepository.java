@@ -1,4 +1,4 @@
-package com.example.sihum;
+package com.example.sihum.Article;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <nav>
+    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+    <a href="/user/create">
+      <button type="button">회원가입</button>
+    </a>
+    <a href="/article/list">목록</a>
+  </nav>
   <meta charset="UTF-8">
   <title>Title</title>
 </head>
 <body>
-<form th:action="@{|/article/modify/${article.id}|}" method="post">
-  <tr>
-    <input type="text" name="title" id="title">
-    <td>
-      <textarea name="content" id="content" cols="30" rows="10"></textarea>
-    </td>
-  </tr>
+<form th:action="@{/article/modify/{id}(id=${article.id})}" th:object="${articleForm}" method="post">
+  <div>
+    <input th:field="*{title}" id="title">
+  </div>
+  <div>
+        <textarea th:field="*{content}" id="content" cols="30" rows="10">
+        </textarea>
+  </div>
   <button type="submit">저장하기</button>
 </form>
 </body>

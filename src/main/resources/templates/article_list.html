@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<nav>
+    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+    <a href="/user/create">
+        <button type="button">회원가입</button>
+    </a>
+    <a href="/article/list">목록</a>
+</nav>
 <body>
-<tr th:each="article : ${articleList}">
-    <td>
-        <a th:href="@{|/article/detail/${article.id}|}" th:text="${article.title}"></a>
+<div>
+    <tr th:each="article : ${articleList}">
+        <td>
+            <a th:href="@{|/article/detail/${article.id}|}" th:text="${article.title}" ></a>
 
-    </td>
-</tr>
+        </td>
+    </tr>
+</div>
+
+
 <a href="/article/create">
-    <button type="button">저장하기</button>
+    <button type="button">글등록</button>
 </a>
+
 </body>
 </html>

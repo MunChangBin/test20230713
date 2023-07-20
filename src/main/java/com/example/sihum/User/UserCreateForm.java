@@ -9,18 +9,16 @@ import lombok.Setter;
 @Setter
 public class UserCreateForm {
 
-    @NotEmpty(message = "다시입력")
-    private String name;
-
-    @NotEmpty(message = "다시입력")
-    private String password1;
-
-    @NotEmpty(message = "다시입력")
-    private String password2;
-
     @Email
-    @NotEmpty(message = "다시입력")
+    @NotEmpty
     private String email;
 
+    @NotEmpty
+    private String username;
 
+    @NotEmpty
+    private String password1;
+    @NotEmpty
+    private String password2;
 }
+

@@ -1,23 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<nav>
+    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+    <a href="/user/create">
+        <button type="button">회원가입</button>
+    </a>
+    <a href="/article/list">목록</a>
+</nav>
 <body>
+<form th:action="@{|/article/create/${article.id}|}" th:object="${articleForm}" method="post" class="my-3">
 
-<td th:text="${article.content}">
-
-</td>
-<a href="/article/list">
-  <button type="button">목록</button>
-</a>
-<a th:href="@{|/article/modify/${article.id}|}">
-<button type="button">수정하기</button>
-</a>
-<a th:href="@{|/article/delete/${article.id}|}">
-    <button type="button">삭제하기</button>
-</a>
-
-</body>
-</html>
+    <div>
+        <td sec:authorize="isAnonymous()" th:txet="${article.content}" class="form-control" ></td>
+    </div>
+    <div>
+        <td sec:authorize="isAuthenticated()" disabled th:text="${article.content}" class="form-control" > </td>
+    </div>
+    <input type="submit" value="답변등록" class="btn btn-primary my-2">
+</form>
+<div class="my-3">
+    <a th:href="@{|/article/modify/${article.id}|}"
+       sec:authorize="isAuthenticated()"
+       th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+       th:text="수정"></a>
+</div>
+<div>
+    <a th:href="@{|/article/delete/${article.id}|}"
+       sec:authorize="isAuthenticated()"
+       th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+       th:text="삭제"></a>
+</div>
+</body>>
